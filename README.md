@@ -3,7 +3,7 @@ Solutions for 2023 Advent of Code written in Go
 
 |       Day       |     Stars     |
 |-----------------|---------------|
-| [Day 1](day1) | :star: |
+|  [Day 1](day1)  | :star: :star: |
 | Day 2 |  |
 | Day 3 |  |
 | Day 4 |  |

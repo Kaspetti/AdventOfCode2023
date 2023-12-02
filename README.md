@@ -4,7 +4,7 @@ Solutions for 2023 Advent of Code
 |       Day       | Language |     Stars     |
 |-----------------|----------|---------------|
 |  [Day 1](day1)  |    Go    | :star: :star: |
-|  [Day 2](day2)  | NuShell  | :star:        |
+|  [Day 2](day2)  | NuShell  | :star: :star: |
 | Day 3 |  |  |
 | Day 4 |  |  |
 | Day 5 |  |  |

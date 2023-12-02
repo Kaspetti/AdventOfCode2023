@@ -14,7 +14,7 @@ Solutions for 2023 Advent of Code. Each day is a random programming language. Wh
 * Haskell
 * Rust
 
-##Solutions
+## Solutions
 |       Day       | Language |     Stars     |
 |-----------------|----------|---------------|
 |  [Day 1](day1)  |    Go    | :star: :star: |

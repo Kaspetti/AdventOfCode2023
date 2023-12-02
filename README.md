@@ -1,5 +1,18 @@
 # AdventOfCode2023
-Solutions for 2023 Advent of Code
+Solutions for 2023 Advent of Code. Each day is a random programming language. When a programming language is chosen it cannot be chosen the next two days.
+
+## Languages
+* C
+* C++
+* OCaml
+* Go
+* C#
+* Zig
+* Javascript
+* Python
+* NuShell
+* Haskell
+* Rust
 
 |       Day       | Language |     Stars     |
 |-----------------|----------|---------------|

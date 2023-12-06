@@ -42,4 +42,5 @@ Solutions for 2023 Advent of Code. Each day is a random programming language. Wh
 | Day 23|  |  |
 | Day 24|  |  |
 | Day 25|  |  |
-*Star 2 is **very** slow 
+
+*Star 2 is **extremely** slow 

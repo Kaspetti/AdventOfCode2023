@@ -1,5 +1,5 @@
 # AdventOfCode2023
-Solutions for 2023 Advent of Code. Each day is a random programming language. When a programming language is chosen it cannot be chosen the next two days.
+Solutions for 2023 Advent of Code. Each day is a random programming language. When a language is chosen it cannot be chosen the next two days. A language can only be pciked three times.
 
 ## Languages
 * C
@@ -10,7 +10,7 @@ Solutions for 2023 Advent of Code. Each day is a random programming language. Wh
 * Zig
 * Javascript
 * Python
-* NuShell
+* ~~NuShell~~
 * Haskell
 * Rust
 
@@ -24,7 +24,7 @@ Solutions for 2023 Advent of Code. Each day is a random programming language. Wh
 |  [Day 5*](day5) | NuShell  | :star: :star: |
 |  [Day 6](day6)  |   Rust   | :star: :star: |
 |  [Day 7](day7)  |    C#    | :star: :star: |
-| Day 8 |  |  |
+| Day 8 |         | NuShell  |  |
 | Day 9 |  |  |
 | Day 10|  |  |
 | Day 11|  |  |

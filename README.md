@@ -24,7 +24,7 @@ Solutions for 2023 Advent of Code. Each day is a random programming language. Wh
 |  [Day 5*](day5) | NuShell  | :star: :star: |
 |  [Day 6](day6)  |   Rust   | :star: :star: |
 |  [Day 7](day7)  |    C#    | :star: :star: |
-|  [Day 8](day8)  | NuShell  | :star:        |
+|  [Day 8](day8)  | NuShell  | :star: :star: |
 | Day 9 |  |  |
 | Day 10|  |  |
 | Day 11|  |  |

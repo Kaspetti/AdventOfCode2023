@@ -4,33 +4,39 @@
 const int DIMENSIONS = 141;
 
 
-int find_paths(int x, int y, int prev_x, int prev_y, char grid[DIMENSIONS + 2][DIMENSIONS + 2]) {
+int find_path(int x, int y, int prev_x, int prev_y, char grid[DIMENSIONS][DIMENSIONS + 2]) {
     char symbol = grid[y][x];
     int new_x;
     int new_y;
 
     switch (symbol) {
         case '|':
+            if (x != prev_x) { return  -1; }
             new_x = x;
             new_y = y > prev_y ? y + 1 : y - 1;
             break;
         case '-':
+            if (y != prev_y) { return  -1; }
             new_x = x > prev_x ? x + 1 : x - 1;
             new_y = y;
             break;
         case 'L':
+            if (prev_x < x || prev_y > y) { return -1; }
             new_x = x < prev_x ? x : x + 1;
             new_y = y > prev_y ? y : y - 1;
             break;
         case '7':
+            if (prev_x > x || prev_y < y) { return -1; }
             new_x = x > prev_x ? x : x - 1;
             new_y = y < prev_y ? y : y + 1;
             break;
         case 'F':
+            if (prev_x < x || prev_y < y) { return -1; }
             new_x = x < prev_x ? x : x + 1;
             new_y = y < prev_y ? y : y + 1;
             break;
         case 'J':
+            if (prev_x > x || prev_y > y) { return -1; }
             new_x = x > prev_x ? x : x - 1;
             new_y = y > prev_y ? y : y - 1;
             break;
@@ -40,17 +46,12 @@ int find_paths(int x, int y, int prev_x, int prev_y, char grid[DIMENSIONS + 2][D
             return -1;
     }
 
-    int result = find_paths(new_x, new_y, x, y, grid);
+    int result = find_path(new_x, new_y, x, y, grid);
     if (result == -1) {
         return -1;
     }
 
     return 1 + result;
-}
-
-
-int max(int n_1, int n_2) {
-    return n_2 > n_1 ? n_2 : n_1;
 }
 
 
@@ -64,7 +65,7 @@ int main() {
         return 1;
     }
 
-    char grid[DIMENSIONS + 2][DIMENSIONS + 2];
+    char grid[DIMENSIONS][DIMENSIONS + 2];
     int start_x = -1;
     int start_y = -1;
 
@@ -80,16 +81,23 @@ int main() {
         row++;
     };
 
-    int steps_right = find_paths(start_x + 1, start_y, start_x, start_y, grid);
-    int steps_left = find_paths(start_x - 1, start_y, start_x, start_y, grid);
-    int steps_down = find_paths(start_x, start_y + 1, start_x, start_y, grid);
-    int steps_up = find_paths(start_x, start_y - 1, start_x, start_y, grid);
+    int steps_right = find_path(start_x + 1, start_y, start_x, start_y, grid);
+    int steps_left = find_path(start_x - 1, start_y, start_x, start_y, grid);
+    int steps_down = find_path(start_x, start_y + 1, start_x, start_y, grid);
+    int steps_up = find_path(start_x, start_y - 1, start_x, start_y, grid);
 
-    int max_steps = max(steps_right, steps_left);
-    max_steps = max(max_steps, steps_down);
-    max_steps = max(max_steps, steps_up);
+    int furthest_step = 0;
+    if (steps_right != -1) {
+        furthest_step = steps_right / 2;
+    } else if (steps_left != -1) {
+        furthest_step = steps_left / 2;
+    } else if (steps_down != -1) {
+        furthest_step = steps_down / 2;
+    } else if (steps_up != -1) {
+        furthest_step = steps_up / 2;
+    }
 
-    printf("Furthest steps from start: %d\n", max_steps / 2);
+    printf("Furthest steps from start: %d\n", furthest_step);
 
     fclose(fptr);
     return 0;

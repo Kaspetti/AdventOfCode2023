@@ -5,33 +5,91 @@ pub fn main() !void {
     defer arena.deinit();
     const allocator = arena.allocator();
 
-    const input_list = try get_lines("input", allocator);
-    defer input_list.deinit();
+    const input_path = "input";
 
-    var empty_rows = std.ArrayList(usize).init(allocator);
-    defer empty_rows.deinit();
-    for (input_list.items, 0..) |line, row| {
-        if (!contains_galaxy(line)) {
-            try empty_rows.append(row);
+    var grid = try get_lines(input_path, allocator);
+    defer grid.deinit();
+
+    try expand_grid(&grid, input_path, allocator);
+
+    var galaxy_coords = std.ArrayList(struct { x: isize, y: isize }).init(allocator);
+    for (grid.items, 0..) |line, y| {
+        for (line, 0..) |char, x| {
+            if (char == '#') {
+                const g_x: isize = @bitCast(x);
+                const g_y: isize = @bitCast(y);
+                try galaxy_coords.append(.{ .x = g_x, .y = g_y });
+            }
         }
     }
 
-    rotate_grid(input_list);
+    var total_length: isize = 0;
+    for (0..galaxy_coords.items.len - 1) |i| {
+        for (i + 1..galaxy_coords.items.len) |j| {
+            const galaxy_0 = galaxy_coords.items[i];
+            const galaxy_1 = galaxy_coords.items[j];
 
+            total_length += abs(galaxy_0.x - galaxy_1.x) + abs(galaxy_0.y - galaxy_1.y);
+        }
+    }
+
+    std.debug.print("The total length of all paths: {d}\n", .{total_length});
+}
+
+fn abs(n_1: isize) isize {
+    if (n_1 < 0) {
+        return n_1 * -1;
+    }
+
+    return n_1;
+}
+
+fn expand_grid(grid: *std.ArrayList([]u8), input_path: []const u8, allocator: std.mem.Allocator) !void {
+    var rotated_grid = try get_lines(input_path, allocator);
+    rotate_grid(rotated_grid);
+
+    defer rotated_grid.deinit();
+
+    // expand in the X direction
+    var rows_expanded: u8 = 0;
+    for (0..grid.items.len) |row| {
+        if (!contains_galaxy(grid.items[row + rows_expanded])) {
+            try grid.insert(row + rows_expanded, grid.items[row + rows_expanded]);
+            rows_expanded += 1;
+        }
+    }
+
+    // Get which columns should expand in the Y direction
     var empty_columns = std.ArrayList(usize).init(allocator);
-    for (input_list.items, 0..) |line, column| {
+    for (rotated_grid.items, 0..) |line, column| {
         if (!contains_galaxy(line)) {
             try empty_columns.append(column);
         }
     }
 
-    rotate_grid(input_list);
-
-    std.debug.print("Empty rows: {d}\n", .{empty_rows.items});
-    std.debug.print("Empty columns: {d}\n", .{empty_columns.items});
+    // Expand columns in Y direction
+    for (empty_columns.items, 0..) |column, columns_expanded| {
+        for (0..grid.items.len) |line| {
+            grid.items[line] = try insert_at(grid.items[line], '.', column + columns_expanded, allocator);
+        }
+    }
 }
 
-fn get_lines(comptime file_name: []const u8, allocator: std.mem.Allocator) !std.ArrayList([]u8) {
+fn insert_at(string: []const u8, char: u8, index: usize, allocator: std.mem.Allocator) ![]u8 {
+    var new_string = try allocator.alloc(u8, string.len + 2);
+
+    for (0..index) |i| {
+        new_string[i] = string[i];
+    }
+    new_string[index] = char;
+    for (index..string.len) |i| {
+        new_string[i + 1] = string[i];
+    }
+
+    return new_string;
+}
+
+fn get_lines(file_name: []const u8, allocator: std.mem.Allocator) !std.ArrayList([]u8) {
     const file = try std.fs.cwd().openFile(file_name, .{});
     defer file.close();
 
@@ -66,7 +124,7 @@ fn rotate_grid(grid: std.ArrayList([]u8)) void {
     }
 }
 
-fn contains_galaxy(line: []u8) bool {
+fn contains_galaxy(line: []const u8) bool {
     for (line) |char| {
         if (char == '#') {
             return true;

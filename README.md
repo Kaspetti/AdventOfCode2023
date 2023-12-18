@@ -5,7 +5,7 @@ Solutions for 2023 Advent of Code. Each day is a random programming language. Wh
 * C
 * C++
 * OCaml
-* Go
+* ~~Go~~
 * C#
 * Zig
 * Javascript
@@ -13,11 +13,12 @@ Solutions for 2023 Advent of Code. Each day is a random programming language. Wh
 * ~~NuShell~~
 * Haskell
 * Rust
-* PHP
+* PHP (*replaces NuShell*)
+* F# (*replaces Go*)
 
 ## Solutions
-|       Day       | Language |     Stars     |
-|-----------------|----------|---------------|
+|       Day        | Language |     Stars     |
+|------------------|----------|---------------|
 |  [Day 1](day01)  |    Go    | :star: :star: |
 |  [Day 2](day02)  | NuShell  | :star: :star: |
 |  [Day 3](day03)  | Haskell  | :star: :star: |
@@ -27,15 +28,15 @@ Solutions for 2023 Advent of Code. Each day is a random programming language. Wh
 |  [Day 7](day07)  |    C#    | :star: :star: |
 |  [Day 8](day08)  | NuShell  | :star: :star: |
 |  [Day 9](day09)  |  OCaml   | :star: :star: |
-|  [Day 10](day10)|    C     | :star: :star: |
-| Day 11          |   Zig    |  |
-| Day 12          |  Python  |  |
-| Day 13|  |  |
-| Day 14|  |  |
-| Day 15|  |  |
-| Day 16|  |  |
-| Day 17|  |  |
-| Day 18|  |  |
+|  [Day 10](day10) |    C     | :star: :star: |
+| Day 11           |   Zig    | :star:        |
+| Day 12           |  Python  |  |
+| Day 13           |   C++    |  |
+| Day 14           |   PHP    |  |
+| Day 15           |JavaScript|  |
+| Day 16           |   Go     |  |
+| Day 17           |   PHP    |  |
+| Day 18           |  Python  |  |
 | Day 19|  |  |
 | Day 20|  |  |
 | Day 21|  |  |

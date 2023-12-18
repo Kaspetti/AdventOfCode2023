@@ -29,7 +29,7 @@ Solutions for 2023 Advent of Code. Each day is a random programming language. Wh
 |  [Day 8](day08)  | NuShell  | :star: :star: |
 |  [Day 9](day09)  |  OCaml   | :star: :star: |
 |  [Day 10](day10) |    C     | :star: :star: |
-| Day 11           |   Zig    | :star:        |
+|  [Day 11](day11) |   Zig    | :star: :star: |
 | Day 12           |  Python  |  |
 | Day 13           |   C++    |  |
 | Day 14           |   PHP    |  |
